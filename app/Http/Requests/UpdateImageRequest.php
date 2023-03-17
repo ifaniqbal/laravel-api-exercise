@@ -25,7 +25,8 @@ class UpdateImageRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'file' => 'required|image',
-            'enable' => 'required|boolean'
+            'enable' => 'required|boolean',
+            'products' => 'array',
         ];
     }
 }

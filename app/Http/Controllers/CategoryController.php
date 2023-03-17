@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return CategoryResource::collection(Category::paginate());
+        return CategoryResource::collection(Category::with('products')->paginate());
     }
 
     /**
@@ -23,8 +23,18 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $category = $request->validated();
-        return new CategoryResource(Category::create($category));
+        $validated = $request->validated();
+        $products = [];
+        if (isset($validated['products'])) {
+            $products = $validated['products'];
+            unset($validated['products']);
+        }
+
+        $category = Category::create($validated);
+        $category->products()->sync($products);
+        $category->load('products');
+
+        return new CategoryResource($category);
     }
 
     /**
@@ -32,6 +42,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $category->load('products');
+
         return new CategoryResource($category);
     }
 
@@ -44,6 +56,14 @@ class CategoryController extends Controller
         $category->name = $validated['name'];
         $category->enable = $validated['enable'];
         $category->save();
+        if (isset($validated['products'])) {
+            $products = $validated['products'];
+            unset($validated['products']);
+            $category->products()->sync($products);
+        }
+
+        $category->load('products');
+
         return new CategoryResource($category);
     }
 
@@ -52,7 +72,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->products()->detach();
         $category->delete();
+
         return ['message' => 'resource deleted'];
     }
 }

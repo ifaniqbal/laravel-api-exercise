@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return ProductResource::collection(Product::paginate());
+        return ProductResource::collection(Product::with('categories', 'images')->paginate());
     }
 
     /**
@@ -23,8 +23,25 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = $request->validated();
-        return new ProductResource(Product::create($product));
+        $validated = $request->validated();
+        $categories = [];
+        $images = [];
+        if (isset($validated['categories'])) {
+            $categories = $validated['categories'];
+            unset($validated['categories']);
+        }
+
+        if (isset($validated['images'])) {
+            $images = $validated['images'];
+            unset($validated['images']);
+        }
+
+        $product = Product::create($validated);
+        $product->categories()->sync($categories);
+        $product->images()->sync($images);
+        $product->load('categories', 'images');
+
+        return new ProductResource($product);
     }
 
     /**
@@ -32,6 +49,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $product->load('categories', 'images');
         return new ProductResource($product);
     }
 
@@ -45,6 +63,19 @@ class ProductController extends Controller
         $product->description = $validated['description'];
         $product->enable = $validated['enable'];
         $product->save();
+        if (isset($validated['categories'])) {
+            $categories = $validated['categories'];
+            unset($validated['categories']);
+            $product->categories()->sync($categories);
+        }
+
+        if (isset($validated['images'])) {
+            $images = $validated['images'];
+            unset($validated['images']);
+            $product->images()->sync($images);
+        }
+
+        $product->load('categories', 'images');
         return new ProductResource($product);
     }
 
@@ -53,6 +84,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->categories()->detach();
+        $product->images()->detach();
         $product->delete();
         return ['message' => 'resource deleted'];
     }

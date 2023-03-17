@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
 
 class Image extends Model
@@ -24,6 +25,11 @@ class Image extends Model
      */
     protected $appends = ['url'];
 
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
     /**
      * Get the URL
      */
@@ -32,6 +38,5 @@ class Image extends Model
         return Attribute::make(
             get: fn() => Storage::url($this->file),
         );
-
     }
 }

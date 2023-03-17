@@ -25,7 +25,8 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'description' => 'required|max:30000',
-            'enable' => 'required|boolean'
+            'enable' => 'required|boolean',
+            'categories' => 'array',
         ];
     }
 }

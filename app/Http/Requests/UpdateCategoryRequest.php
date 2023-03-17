@@ -24,7 +24,8 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'enable' => 'required|boolean'
+            'enable' => 'required|boolean',
+            'products' => 'array',
         ];
     }
 }
