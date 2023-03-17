@@ -1,0 +1,585 @@
+{
+	"info": {
+		"_postman_id": "bb207cf5-6186-46ae-90a2-64c01f2d8eba",
+		"name": "Laravel API Exercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3498524"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/categories",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Food",
+									"type": "text"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "products[]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/api/categories",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/categories/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"cars\",\n    \"enable\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/api/categories/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":id"
+							],
+							"query": [
+								{
+									"key": "products[]",
+									"value": "2",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/categories/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/products",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Satay\",\n    \"enable\": 0,\n    \"description\": \"Enak sekali\",\n    \"categories\": [],\n    \"images\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/api/products",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/products/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Satay\",\n    \"enable\": 0,\n    \"description\": \"Enak sekali\",\n    \"categories\": [1]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/api/products/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/products/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Get Images",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/images",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sate",
+									"type": "text"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/iqbal/My Drive (ifaniqbal.com@gmail.com)/Photo/Profile Photos/cv-photo.jpeg"
+								},
+								{
+									"key": "products[]",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/api/images",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Image",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/images/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"images",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sate",
+									"type": "text"
+								},
+								{
+									"key": "enable",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "products[]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/iqbal/My Drive (ifaniqbal.com@gmail.com)/Photo/Profile Photos/cv-photo.jpeg"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/api/images/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"images",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy Image",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/api/images/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"images",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
